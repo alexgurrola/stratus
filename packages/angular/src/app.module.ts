@@ -38,6 +38,8 @@ import {FlexLayoutModule} from '@angular/flex-layout'
 import {BaseComponent} from '@stratusjs/angular/base/base.component'
 
 // Stratus Custom Directives/Components
+// import {ChangesetViewerComponent} from '@stratusjs/angular/changeset-viewer/changeset-viewer.component'
+// import {ChangesetViewerDialogComponent} from '@stratusjs/angular/changeset-viewer/changeset-viewer-dialog.component'
 import {ConfirmDialogComponent} from '@stratusjs/angular/confirm-dialog/confirm-dialog.component'
 import {EditorComponent} from '@stratusjs/angular/editor/editor.component'
 import {MapComponent} from '@stratusjs/map/map.component'
@@ -387,6 +389,8 @@ const monacoConfig: NgxMonacoEditorConfig = {
     // This determines what is accessible as a component. These must be listed in `declarations`.
     entryComponents: [
         BaseComponent,
+        // ChangesetViewerComponent,
+        // ChangesetViewerDialogComponent,
         CodeViewDialogComponent,
         ConfirmDialogComponent,
         EditorComponent,
@@ -407,6 +411,8 @@ const monacoConfig: NgxMonacoEditorConfig = {
     // These determine what exists as a component. These must be listed in `entryComponents`.
     declarations: [
         BaseComponent,
+        // ChangesetViewerComponent,
+        // ChangesetViewerDialogComponent,
         CodeViewDialogComponent,
         ConfirmDialogComponent,
         EditorComponent,
@@ -436,6 +442,7 @@ export class AppModule {
     // These modules will be hydrated directly in the HTML, and *cannot* load in a component template/dialog
     modules = {
         'sa-base': BaseComponent,
+        // 'sa-changeset-viewer': ChangesetViewerComponent,
         'sa-editor': EditorComponent,
         'sa-map': MapComponent,
         'sa-media-selector': MediaSelectorComponent,

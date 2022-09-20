@@ -91,5 +91,9 @@ packages/angularjs-extras/src/filters/avatar.js
 packages/angularjs-extras/src/filters/numeral.js
 packages/angularjs-extras/src/filters/truncate.js
 
+# Not in use yet
+packages/angularjs-extras/src/directives/mdChipDraggable.js
+packages/angularjs-extras/src/directives/mdChipDraggable.js.map
+
 # JavaScript Supercedes
 !packages/runtime/src/stratus.amd.js

@@ -323,4 +323,40 @@ export default [
       })
     ]
   }
+  // TODO: Stratus Compress into DIST
+  // ------------------------
+  // Runtime Config
+  // ------------------------
+  // {
+  //   input: {
+  //     include: [
+  //       './packages/runtime/src/**/*.js'
+  //     ],
+  //     exclude: []
+  //   },
+  //   external: [
+  //     'lodash',
+  //     'jquery',
+  //     '@stratusjs',
+  //     // Convert to Bowser 2 (ES6 Support)
+  //     'bowser-legacy',
+  //   ],
+  //   output: {
+  //     // file: 'packages/runtime/dist/runtime.bundle.js',
+  //     dir: 'packages/runtime/dist/',
+  //     format: 'system'
+  //   },
+  //   plugins: [
+  //     multi({
+  //       exports: true,
+  //       entryFileName: 'runtime.bundle.js'
+  //     }),
+  //     nodeResolve({
+  //       // browser: true
+  //     }),
+  //     postcss({
+  //       config: false
+  //     })
+  //   ]
+  // }
 ]

@@ -146,7 +146,6 @@ export class Model<T = LooseObject> extends ModelBase<T> {
     pending = false
     error = false
     completed = false
-    saving = false
 
     // External Controls
     changedExternal = false
@@ -302,7 +301,6 @@ export class Model<T = LooseObject> extends ModelBase<T> {
 
     resetXHRFlags() {
         this.pending = false
-        this.saving = false
         // Note: we do not know status of this.completed because in some cases an error would cause retrieval of bad
         // data and we do not want to overwrite data
         // NOTE: when we reset XHR it could happen in success, error, etc, so we don't know status of this.changed
@@ -686,7 +684,6 @@ export class Model<T = LooseObject> extends ModelBase<T> {
                 // Before handling changes make sure we set to false
                 this.changed = false
                 this.changedExternal = false
-                this.saving = false
                 // FIXME: This should be finding the changed identifier...
                 this.handleChanges()
                 this.patch = {}
@@ -762,7 +759,6 @@ export class Model<T = LooseObject> extends ModelBase<T> {
     }
 
     save(options?: any): Promise<any> {
-        this.saving = true
         // TODO: store the promise locally so if it's in the middle of saving it returns the pending promise instead of adding another...
         options = options || {}
         if (!_.isObject(options)) {
@@ -784,7 +780,6 @@ export class Model<T = LooseObject> extends ModelBase<T> {
         ) {
             console.warn('Blocked attempt to save an empty payload to a persisted model.')
             return new Promise((resolve, reject) => {
-                this.saving = false
                 resolve(this.data)
             })
         }

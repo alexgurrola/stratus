@@ -63,7 +63,7 @@ FroalaEditor.PLUGINS.linkManager = function linkManager (editor: any) {
             },
             // Note: We use Custom Bindings for this via this.insert()
             autoSaveSelection: true,
-            // maintainSnapshot: true,
+            maintainSnapshot: true,
             autoRestoreSelection: true,
             // maintainSelection: false,
             debug
@@ -116,10 +116,10 @@ FroalaEditor.PLUGINS.linkManager = function linkManager (editor: any) {
 FroalaEditor.RegisterCommand('linkManager', {
     title: 'Insert from Link Library',
     undo: false,
-    focus: true,
+    focus: false,
     modal: true,
-    //refreshAfterCallback: false,
-    refreshOnCallback: false,
+    // refreshAfterCallback: false,
+    // refreshOnCallback: false,
     callback() {
         // console.log('linkManager callback initiated!', this.link)
         // console.log('selection:', this.selection.isCollapsed(), this.selection, this.$el)

@@ -65,6 +65,7 @@
     <!--      class="tree-node-drag-placeholder"></span>-->
 
     <!-- Route Display -->
+    <!-- FIXME: This has been reported to cause a "No route set!" message when people are creating new MenuLinks -->
     <small class="hover-box"
            [class.route-none]="!node.model.get('route')"
            [class.type-none]="!node.model.get('content.contentType.iconResourcePath')">

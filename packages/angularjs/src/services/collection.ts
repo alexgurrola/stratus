@@ -474,6 +474,7 @@ export class Collection<T = LooseObject> extends EventManager {
 
     filter(query: string) {
         this.filtering = !_.isEmpty(query)
+        // TODO: if query is empty or undefined, remove meta.get('api.q')
         this.meta.set('api.q', !_.isUndefined(query) ? query : '')
         this.meta.set('api.p', 1)
         return this.fetch()

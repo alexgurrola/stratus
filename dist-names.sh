@@ -13,6 +13,7 @@ packages=(
   core
   idx
   map
+  runtime
   stripe
   swiper
 )

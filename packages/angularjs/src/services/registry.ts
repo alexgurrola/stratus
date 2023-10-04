@@ -207,6 +207,7 @@ export class Registry {
                     data = Stratus.Catalog[options.target][id]
                 }
             } else {
+                // FIXME: Compendium may not work
                 const registry = !options.direct ? 'Catalog' : 'Compendium'
                 if (!Stratus[registry][options.target]) {
                     Stratus[registry][options.target] = {}

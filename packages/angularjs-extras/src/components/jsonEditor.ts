@@ -79,10 +79,13 @@ Stratus.Components.JsonEditor = {
                     return
                 }
                 $scope.jsonString = jsonString
+                // console.log('json string:', jsonString)
                 $scope.$applyAsync()
-            })
-            // Saving Data if Valid This is expecting a string
+            }, true)
+
             /**
+             * Saving Data if Valid
+             * This is expecting a string
              * This turns the string from the jsonString into an object to send to the model
              */
             $scope.$watch(() => $scope.jsonString, (newString, oldString) => {
@@ -94,8 +97,10 @@ Stratus.Components.JsonEditor = {
                 if (!isValid) {
                     return
                 }
+                // console.log('new string:', newString)
                 // turn it to an object
                 this.ngModel = JSON.parse(newString)
+                // $scope.$applyAsync()
             })
         }
 

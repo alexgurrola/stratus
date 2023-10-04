@@ -142,7 +142,7 @@ export class InputButtonPlugin<EventData = string|LooseObject> implements Trigge
         // Always disable blur before changing focus
         this.editor.events.disableBlur()
         // Get focus back to the editor
-        this.editor.events.focus()
+        // this.editor.events.focus()
         // Restore last snapshot
         this.editor.snapshot.restore(this.snapshot)
         // Enable Blur after snapshot
@@ -170,7 +170,7 @@ export class InputButtonPlugin<EventData = string|LooseObject> implements Trigge
         // Always disable blur before changing focus
         this.editor.events.disableBlur()
         // Get focus back to the editor
-        this.editor.events.focus()
+        // this.editor.events.focus()
         // Restore last selection
         this.editor.selection.restore()
         // Enable Blur

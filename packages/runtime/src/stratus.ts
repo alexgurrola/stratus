@@ -6,6 +6,12 @@ import _ from 'lodash'
 import jQuery from 'jquery'
 import bowser from 'bowser-legacy'
 
+// Import Bowser
+//import * as Bowser from 'bowser'
+
+// Import Toastify
+//import StartToastifyInstance from 'toastify-js/src/toastify-es.js'
+
 // Stratus Core
 import {cookie} from '@stratusjs/core/environment'
 import {
@@ -173,6 +179,8 @@ interface StratusRuntime {
     Catalog: {} | any
     Instances: {} | any
     Services: {} | any
+    // TODO: Create an Interface for the Response (Selector)
+    // Select?: (selector: (string | any), context?: (Document | any)) => SelectorType
     Select: DOMType['Select']
     Environment: ModelBase
     Resources: {} | any
@@ -184,6 +192,18 @@ interface StratusRuntime {
     Integrations: any
     [key: string]: any
 }
+
+// Coming soon!
+// export interface SelectType {
+//
+// }
+//
+// export interface SelectorType {
+//     context: SelectType
+//     length: number
+//     selection: Node | Document
+//     selector: string
+// }
 
 export const Stratus: StratusRuntime = {
     /* Settings */
@@ -241,6 +261,7 @@ export const Stratus: StratusRuntime = {
 
     /* Bowser */
     Client: bowser,
+    //Toast: StartToastifyInstance,
 
     /* Stratus */
     CSS: {},
@@ -1401,6 +1422,8 @@ Stratus.Internals.LoadImage = (obj: any) => {
         //     console.log('LoadImage() srcOriginProtocol:', srcOriginProtocol)
         // }
 
+        // TODO: Ensure we actually have a different src before initiating this below!
+
         // Set up actions for to load the smallest image first.
         if (type === 'img') {
             // Add Listeners (Only once per Element!)
@@ -1724,6 +1747,7 @@ Stratus.Internals.UpdateEnvironment = (request: any) => {
     if (typeof request === 'object' && Object.keys(request).length) {
         // TODO: Create a better URL, switching between relative APIs based on
         // environment
+        // TODO: This is accessing the API through HTTP instead of HTTPS for some reason.
         Stratus.Internals.XHR({
             method: 'PUT',
             url: '/Api/Session', // auth.sitetheory.io
@@ -2193,7 +2217,7 @@ Stratus.Internals.Auth = (convoy: any) => {
 Stratus.PostMessage.Convoy(Stratus.Internals.Auth)
 
 // Run XHR to Gather Session
-Stratus.Internals.SessionSync = () => {
+Stratus.Internals.SessionSync = (url?: string) => {
     // Ensure we only provide Sitetheory SSO to Sitetheory Sites
     if (!cookie('SITETHEORY')) {
         console.log('invalid[SessionSync]: This does not appear to be a Sitetheory site.')
@@ -2202,7 +2226,7 @@ Stratus.Internals.SessionSync = () => {
     // Create Request for Single Sign On
     const xhr = new XHR({
         method: 'PUT', // POST
-        url: 'https://auth.sitetheory.io/Api/Session',
+        url: url || 'https://auth.sitetheory.io/Api/Session',
         withCredentials: true,
         data: {
             route: {},
@@ -2218,10 +2242,14 @@ Stratus.Internals.SessionSync = () => {
     })
     xhr.send()
         .then((response: LooseObject | Array<LooseObject> | string) => {
+            if (typeof url !== 'undefined') {
+                console.log('success[SessionSync]:', url)
+                return
+            }
             Stratus.Internals.Auth(response)
         })
         .catch((error: any) => {
-            console.error('error[SessionSync]:', error)
+            console.error(`error[SessionSync]: ${url} ->`, error)
         })
 }
 Stratus.Internals.SessionSync()

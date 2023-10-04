@@ -239,6 +239,7 @@ export function patch(newData: LooseObject, priorData: LooseObject, ignoreKeys?:
         if (value === priorValue) {
             return
         }
+        // FIXME: This appears to be failing with complex datasets... (i.e. JSON Editor)
         if (_.isObject(value)) {
             if (_.isArray(value)) {
                 if (!priorValue || _.size(value) !== _.size(priorValue)) {
